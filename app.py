@@ -3,6 +3,17 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
+@app.route('/team', methods=["POST", "GET"])
+def get_player():
+    if request.method == "POST":
+        player = request.form["player"]
+        result = player
+        return render_template("result.html", result2=result)
+    else:
+        random_players = ['a', 'b', 'c', 'd']
+        return render_template("team.html", players=random_players)
+
+
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == "POST":
